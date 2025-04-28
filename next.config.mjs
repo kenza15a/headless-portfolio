@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["kenza-web.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'kenza-web.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import LayoutClient from "@/components/LayoutClient";
 
 export const metadata = {
   title: "Portfolio Développeuse Web",
@@ -10,8 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className="bg-gray-50 text-gray-800">
-        <Navbar />
-        <main >{children}</main>
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );

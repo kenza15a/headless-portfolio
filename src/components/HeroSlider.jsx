@@ -16,11 +16,15 @@ export default function HeroSlider() {
     <section className="relative w-full h-[60vh] md:h-screen overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
         pagination={{ clickable: true }}
         effect="fade"
-        className="w-full h-full "
+        speed={1000}
+        fadeEffect={{
+          crossFade: true,
+        }}
+        className="w-full h-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>

@@ -5,6 +5,27 @@
   --foreground: #171717;
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+.spiral {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #007bff;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
