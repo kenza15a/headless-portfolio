@@ -28,3 +28,15 @@ export async function getCategories() {
   );
   return res.data;
 }
+//get portfolio items
+export async function getStaticProps() {
+  const res = await fetch("https://yourdomain.com/wp-json/wp/v2/portfolio");
+  const data = await res.json();
+
+  return {
+    props: {
+      portfolio: data,
+    },
+    revalidate: 60,
+  };
+}

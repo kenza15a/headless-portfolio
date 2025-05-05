@@ -22,7 +22,6 @@ export default function PostsPage() {
 
   const postsPerPage = 10;
 
-  // Charger les données dès qu’un filtre ou la page change
   useEffect(() => {
     fetchData();
   }, [currentPage, selectedCategory, searchTerm]);
@@ -30,7 +29,6 @@ export default function PostsPage() {
   async function fetchData() {
     setLoading(true);
 
-    // 1. Récupérer les articles selon les filtres actifs
     const { posts, totalPages } = await getPosts(
       currentPage,
       postsPerPage,
@@ -38,26 +36,22 @@ export default function PostsPage() {
       searchTerm
     );
 
-    //  Charger toutes les catégories si ce n’est pas déjà fait
     let updatedAllCategories = allCategories;
     if (allCategories.length === 0) {
       updatedAllCategories = await getCategories();
       setAllCategories(updatedAllCategories);
     }
 
-    // Extraire les catégories utilisées dans les articles
     const usedCategoryIds = new Set();
     posts.forEach((post) => {
       post.categories.forEach((id) => usedCategoryIds.add(id));
     });
 
-    //  Filtrer les catégories selon les filtres actifs
     const showAll = !searchTerm && !selectedCategory;
     const filtered = showAll
       ? updatedAllCategories
       : updatedAllCategories.filter((cat) => usedCategoryIds.has(cat.id));
 
-    // Mettre à jour les états
     setCategories(filtered);
     setPosts(posts);
     setTotalPages(totalPages);
@@ -125,7 +119,7 @@ export default function PostsPage() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <AnimatePresence>
-                {posts.map((post) => (
+                {posts.map((post, index) => (
                   <motion.div
                     key={post.id}
                     initial={{ opacity: 0, y: 30 }}
@@ -133,7 +127,11 @@ export default function PostsPage() {
                     exit={{ opacity: 0, y: -30 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <PostCard post={post} />
+                    <PostCard
+                      post={post}
+                      categories={allCategories}
+                      index={index}
+                    />
                   </motion.div>
                 ))}
               </AnimatePresence>

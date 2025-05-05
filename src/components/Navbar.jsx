@@ -33,7 +33,7 @@ export default function Navbar() {
           className="object-contain"
           priority
         />
-        <span className="text-lg font-bold text-gray-800">KENZA web</span>
+        <span className="text-lg font-bold text-gray-800">KENZA WEB</span>
       </Link>
 
       {/* Desktop Navigation */}

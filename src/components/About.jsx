@@ -66,7 +66,7 @@ export default function AboutSection() {
               }}
             >
               <Image
-                src="/images/default.jpg"
+                src="/images/dh-logo.png"
                 alt="Photo de profil"
                 width={256}
                 height={256}
