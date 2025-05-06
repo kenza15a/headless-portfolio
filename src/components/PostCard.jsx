@@ -16,10 +16,10 @@ export default function PostCard({
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1.03 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className={`block p-4 rounded-xl shadow hover:shadow-lg border hover:-rotate-2 hover:z-100 hover:scale-105 border-gray-100 break-inside-avoid ${colorVariant} ${styleVariant}`}
+      className={`block p-4 rounded-xl shadow hover:shadow-lg border   hover:scale-102 border-gray-100 break-inside-avoid ${colorVariant} ${styleVariant}`}
     >
       {image && (
         <img

@@ -1,39 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import TechnologyCard from "./TechnologyCard";
+import { categories } from "@/utils/data";
 
 export default function TechnologiesSection() {
-  const categories = {
-    "Front-end": [
-      "HTML",
-      "CSS / SCSS",
-      "JavaScript",
-      "TypeScript",
-      "React.js",
-      "Next.js",
-      "Tailwind CSS",
-    ],
-    "Back-end & API": ["Node.js", "REST API", "MongoDB", "SQL"],
-    "CMS & Emailing": ["WordPress", "WooCommerce", "Mailchimp"],
-    "Design & UX": ["Figma", "Photoshop", "Canva"],
-    "Outils & Déploiement": [
-      "Git",
-      "GitHub",
-      "VSCode",
-      "OVH",
-      "AWS",
-      "Azure",
-      "FileZilla",
-    ],
-    "Méthodologie & Gestion": [
-      "Trello",
-      "Notion",
-      "Agile",
-      "User Stories",
-      "Kanban",
-    ],
-  };
-
   // Animation settings
   const container = {
     hidden: {},

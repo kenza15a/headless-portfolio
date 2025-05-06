@@ -1,36 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import Badge from "./ui/Badge";
+import IconLink from "./ui/IconLink";
 import { getPosts } from "../lib/api";
+import {tools} from "../utils/data";
+import { motion } from "framer-motion";
 import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdArticle, MdBuild, MdMenuBook } from "react-icons/md";
-import { HiOutlineDeviceMobile } from "react-icons/hi";
+
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const tools = [
-    "HTML",
-    "CSS/SCSS",
-    "JavaScript",
-    "TypeScript",
-    "React.js",
-    "Next.js",
-    "Tailwind CSS",
-    "WordPress",
-    "WooCommerce",
-    "Git",
-    "GitHub",
-    "VSCode",
-    "OVH",
-    "AWS",
-    "Azure",
-    "FileZilla",
-  ];
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -106,9 +89,11 @@ export default function Footer() {
           </h3>
           <ul className="flex flex-wrap gap-2 text-sm text-gray-300">
             {tools.map((tool) => (
-              <li key={tool} className="bg-gray-800 px-2 py-1 rounded">
-                {tool}
-              </li>
+              <Badge
+                key={tool}
+                tool={tool}
+                className="bg-gray-800 text-gray-300"
+              />
             ))}
           </ul>
         </div>
@@ -141,30 +126,29 @@ export default function Footer() {
           🇫🇷
         </p>
         <div className="flex space-x-4 mt-4 md:mt-0 text-xl">
-          <a
+          <IconLink
             href="https://www.behance.net/kenzafilali"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Behance"
+            label="Behance"
+            className="hover:text-white"
           >
-            <FaBehance className="hover:text-white transition" />
-          </a>
-          <a
+            <FaBehance />
+          </IconLink>
+
+          <IconLink
             href="https://github.com/kenza15a"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
+            label="GitHub"
+            className="hover:text-white"
           >
-            <FaGithub className="hover:text-white transition" />
-          </a>
-          <a
+            <FaGithub />
+          </IconLink>
+
+          <IconLink
             href="https://www.linkedin.com/in/kenza-fil/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            label="LinkedIn"
+            className="hover:text-white"
           >
-            <FaLinkedin className="hover:text-white transition" />
-          </a>
+            <FaLinkedin />
+          </IconLink>
         </div>
       </div>
     </footer>

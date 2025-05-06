@@ -30,7 +30,7 @@ export default function MiniBlogSection() {
     ? posts.filter((p) => p.categories.includes(activeCategory))
     : posts;
 
-  const sizeVariants = ["", "scale-105", "scale-80", "rotate-2"];
+  const sizeVariants = ["", "scale-105", "scale-90", "translate-y-2"];
   const colorVariants = [
     "bg-white",
     "bg-gray-50",
