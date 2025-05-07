@@ -20,7 +20,7 @@ export default function PostsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const postsPerPage = 10;
+  const postsPerPage = 4;
 
   useEffect(() => {
     fetchData();
