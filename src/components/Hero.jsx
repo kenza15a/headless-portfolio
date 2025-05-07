@@ -5,11 +5,14 @@ import { techIcons } from "../utils/data";
 export default function Hero() {
   const [backgroundDots, serBackgroundDots] = useState([]);
   const nameVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: -10, y: 50 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      y: 0.2,
+      transition: {
+        default: { type: "spring" },
+        opacity: { ease: "linear" },
+      },
     },
   };
   const roleVariants = {
@@ -69,7 +72,7 @@ export default function Hero() {
           animate="visible"
           variants={nameVariants}
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-blue-400 ">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r font-bold from-purple-200 to-blue-400 ">
             Kenza Filali
           </span>
         </motion.h1>

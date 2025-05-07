@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa"; // Hamburger and Close icons
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,14 +24,23 @@ export default function Navbar() {
     <nav className="flex justify-between h-max items-center p-4 shadow-md opacity-90 bg-black sticky top-0 z-50">
       {/* Logo and Text linked to homepage */}
       <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
-        <Image
-          src="/images/logo-white.png"
-          alt="KENZA web Logo"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
           width={40}
           height={40}
-          className="object-contain"
-          priority
-        />
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            stroke="#3ab7bf"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+          >
+            <path d="M10.143 8.857L7 12l3.143 3.143m3.714-6.286L17 12l-3.143 3.143"></path>
+            <rect width={16.5} height={16.5} x={3.75} y={3.75} rx={4}></rect>
+          </g>
+        </svg>
         <span className="text-lg font-bold text-white">KENZA WEB</span>
       </Link>
 
