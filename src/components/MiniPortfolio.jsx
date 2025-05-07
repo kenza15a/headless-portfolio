@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import PortfolioCard from "./PortfoliocCards/PortfolioCard";
 import { getPortfolioProjects } from "@/lib/api";
 import Loading from "@/components/Loading";
@@ -8,6 +8,15 @@ import Loading from "@/components/Loading";
 export default function MiniPortfolioSection() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "center center"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,13 +45,17 @@ export default function MiniPortfolioSection() {
   };
 
   return (
-    <section className="py-16 px-6 md:px-12 bg-white" id="mini-portfolio">
+    <section
+      ref={sectionRef}
+      className="py-16 px-6 md:px-12 bg-gray-900"
+      id="mini-portfolio"
+    >
       {isLoading ? (
         <Loading />
       ) : (
-        <>
-          <h2 className="text-3xl font-bold text-blue-600 mb-10 text-center">
-            Mini Portfolio
+        <motion.div style={{ y, opacity }}>
+          <h2 className="text-4xl font-bold text-white mb-10 text-center">
+            MES PROJETS
           </h2>
 
           <motion.div
@@ -50,7 +63,7 @@ export default function MiniPortfolioSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[400px]"
           >
             {projects.map((project) => (
               <motion.div key={project.id} variants={cardVariant}>
@@ -74,7 +87,7 @@ export default function MiniPortfolioSection() {
               Voir tout le portfolio
             </a>
           </div>
-        </>
+        </motion.div>
       )}
     </section>
   );

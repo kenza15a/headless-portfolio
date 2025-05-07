@@ -43,8 +43,8 @@ export default function MiniBlogSection() {
 
   return (
     <section className="py-20 px-6 md:px-16 bg-white text-gray-800">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-        Dernier Articles
+      <h2 className="text-4xl md:text-4xl font-bold mb-6 text-center">
+        L'ACTU
       </h2>
 
       <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -56,7 +56,7 @@ export default function MiniBlogSection() {
               : "bg-gray-100 hover:bg-gray-200"
           }`}
         >
-          All
+          TOUS
         </button>
         {categories.map((cat) => (
           <button

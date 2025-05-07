@@ -54,7 +54,7 @@ function BehancePortfolioSection() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[400px]"
     >
       {behanceProjects.map((project, index) => (
         <motion.div key={index} variants={cardVariant}>

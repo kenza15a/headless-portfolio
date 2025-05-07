@@ -51,7 +51,7 @@ export default function PortfolioPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            className="mb-4 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[400px]"
           >
             {projects.map((project) => (
               <motion.div key={project.id} variants={cardVariant}>
@@ -66,6 +66,9 @@ export default function PortfolioPage() {
               </motion.div>
             ))}
           </motion.div>
+          <h1 className="text-4xl font-bold text-blue-600 mb-10 text-center">
+            Mon Behance
+          </h1>
           <BehancePortfolioSection />
         </>
       )}

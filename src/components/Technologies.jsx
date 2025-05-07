@@ -21,8 +21,8 @@ export default function TechnologiesSection() {
 
   return (
     <section className="py-16 px-6 md:px-12 bg-gray-50" id="technologies">
-      <h2 className="text-3xl font-bold text-blue-600 mb-10 text-center">
-        Technologies maîtrisées
+      <h2 className="text-4xl font-bold text-blue-600 mb-10 text-center">
+        LA STACK
       </h2>
       <motion.div
         variants={container}

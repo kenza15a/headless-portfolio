@@ -1,91 +1,64 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AboutSection() {
   const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <section className="py-16 px-6 md:px-12" id="about">
-      <h2 className="text-3xl font-bold mb-10 text-blue-600 text-center">
-        Qui suis-je ?
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4 items-center">
-        {/* Flippable Image Card */}
+    <section
+      ref={ref}
+      className="py-20 px-6 md:px-16 bg-gray-900 text-white font-sans"
+      id="about"
+    >
+      <motion.div
+        style={{ y, opacity }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+      >
+        {/* Image Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="flex justify-center col-span-3 md:col-span-1 perspective-1000"
+          className="flex justify-center"
         >
-          <motion.div
-            className="w-64 h-64 relative"
-            initial={{ rotateY: 180 }}
-            animate={!isMobile ? { rotateY: 0 } : undefined}
-            whileHover={isMobile ? { rotateY: 0 } : undefined}
-            transition={{
-              duration: 4,
-              ease: "easeInOut",
-              repeat: !isMobile ? Infinity : 0,
-              repeatType: "reverse",
-            }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Front Image (profile.jpg) */}
-            <motion.div
-              className="absolute w-full h-full rounded-full overflow-hidden shadow-lg backface-hidden"
-              style={{ backfaceVisibility: "hidden" }}
-            >
-              <Image
-                src="/images/profile.jpg"
-                alt="Photo de profil alternative"
-                width={256}
-                height={256}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-            {/* Back Image (default.jpg) */}
-            <motion.div
-              className="absolute w-full h-full rounded-full overflow-hidden shadow-lg backface-hidden"
-              style={{
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)",
-              }}
-            >
-              <Image
-                src="/images/dh-logo.png"
-                alt="Photo de profil"
-                width={256}
-                height={256}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          </motion.div>
+          <div className="w-80 h-80 relative rounded-l-lg overflow-hidden shadow-xl ">
+            <Image
+              src="/images/profile.jpg"
+              alt="Photo de profil alternative"
+              fill
+              className="object-cover"
+            />
+          </div>
         </motion.div>
 
-        {/* Texte */}
-        <div className="col-span-1 md:col-span-2 items-center">
-          <p className="text-lg leading-relaxed text-gray-700 mb-4">
+        {/* Text Section */}
+        <div>
+          <h2 className="text-6xl font-bold mb-6">À PROPOS</h2>
+          <p className="text-lg leading-relaxed mb-4">
             Développeuse web passionnée par les technologies front-end, je fais
             preuve de persévérance face aux nouveaux défis. Avec plus de 6 ans
             d'expérience dans le développement web, j'ai travaillé avec HTML,
-            CSS, JavaScript et WordPress, aussi bien en entreprise qu'en
-            freelance.
+            CSS, JavaScript et WordPress, en entreprise et en freelance.
           </p>
-          <p className="text-lg leading-relaxed text-gray-700">
+          <p className="text-lg leading-relaxed">
             Mon parcours s'est enrichi d'une formation intensive en React.js et
             Next.js, me permettant de créer des interfaces modernes et
             performantes. Toujours curieuse, j'explore en continu les dernières
@@ -93,7 +66,7 @@ export default function AboutSection() {
             utilisateur, et techniquement solides.
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

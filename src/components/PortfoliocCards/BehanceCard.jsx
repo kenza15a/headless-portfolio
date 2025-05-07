@@ -1,29 +1,25 @@
 "use client";
 import React from "react";
 
-function BehanceCard({
+export default function BehanceCard({
   src,
-  height,
-  width,
   lazyLoad,
   frameBorder,
   allow,
   refererPolicy,
 }) {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
-      <iframe
-        src={src}
-        height={height}
-        width={width}
-        loading={lazyLoad ? "lazy" : "eager"}
-        frameBorder={frameBorder}
-        allow={allow}
-        referrerPolicy={refererPolicy}
-        className="w-full h-80 object-cover"
-      />
+    <div className="w-full h-[400px] flex flex-col rounded-xl overflow-hidden shadow-md bg-white">
+      <div className="flex-1 relative">
+        <iframe
+          src={src}
+          loading={lazyLoad ? "lazy" : "eager"}
+          frameBorder={frameBorder}
+          allow={allow}
+          referrerPolicy={refererPolicy}
+          className="w-full h-full"
+        />
+      </div>
     </div>
   );
 }
-
-export default BehanceCard;
