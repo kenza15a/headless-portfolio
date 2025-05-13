@@ -39,9 +39,9 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <div className="w-96 h-96 relative rounded-lg overflow-hidden shadow-xl ">
+          <div className="w-80 h-80 relative rounded-full overflow-hidden shadow-xl ">
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile-2.jpg"
               alt="Photo de profil alternative"
               fill
               className="object-cover"

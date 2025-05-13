@@ -1,6 +1,11 @@
-import "./globals.css";
+import './globals.css'
 import LayoutClient from "@/components/LayoutClient";
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/700.css";
 import { Inter } from "next/font/google";
+
 export const metadata = {
   title: "Portfolio Développeuse Web",
   description: "Découvrez mon univers de développement web.",

@@ -1,6 +1,15 @@
+@import "tailwindcss";
+
+
 @tailwind utilities;
 
-@import "tailwindcss";
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+}
 
 :root {
   --background: #ffffff;
@@ -27,6 +36,7 @@
   border-top-color: transparent;
   border-radius: 50%;
 }
+
 .svg-wrapper {
   width: 60px;
   height: 60px;
@@ -38,7 +48,8 @@
 .svg-icon {
   width: 100%;
   height: 100%;
-  fill: #007bff; /* Maintains your color */
+  fill: #007bff;
+  /* Maintains your color */
 }
 
 @theme inline {
@@ -59,4 +70,42 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .animate-moveUp {
+    animation: scrollUp 80s linear infinite;
+  }
+
+  @keyframes scrollUp {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-60%);
+    }
+  }
+
+  .pause-animation:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-verticalScroll {
+    animation: scrollGrid 60s linear infinite;
+  }
+
+  .pause-animation:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollGrid {
+    0% {
+      transform: translateY(0%);
+    }
+
+    100% {
+      transform: translateY(-50%);
+    }
+  }
 }
