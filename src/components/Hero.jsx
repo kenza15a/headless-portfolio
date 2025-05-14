@@ -92,6 +92,7 @@ export default function Hero() {
           variants={buttonVariants}
           className="flex gap-4 justify-center mb-8"
         >
+          
           <motion.button
             className="px-6 py-2 rounded-full bg-blue-600 text-white font-medium"
             whileHover={{ scale: 1.05 }}

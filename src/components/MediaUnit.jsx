@@ -9,6 +9,11 @@ const itemVariants = {
 };
 
 export default function MediaUnit({ media, onClick }) {
+  const imageUrl =
+    media.media_details?.sizes?.medium_large?.source_url ||
+    media.media_details?.sizes?.medium?.source_url ||
+    media.media_details?.sizes?.thumbnail?.source_url ||
+    media.source_url;
   // 🔒 Disable right-click when MediaUnit mounts
   useEffect(() => {
     const disableContextMenu = (e) => e.preventDefault();
@@ -26,9 +31,10 @@ export default function MediaUnit({ media, onClick }) {
     >
       <div className="relative">
         <img
-          src={media.source_url}
+          src={imageUrl}
           alt={media.alt_text}
           className="w-full h-auto object-cover"
+          loading="lazy"
         />
         <div className="absolute bottom-2 right-2 text-white text-xs opacity-60 bg-black/40 px-2 py-1 rounded">
           © Kenza Filali

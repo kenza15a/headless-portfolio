@@ -31,14 +31,21 @@ export default function ImageModal({ media, onClose, onNext, onPrev }) {
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
-        <motion.div
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          className="relative max-w-[90vw] max-h-[90vh]"
-          onClick={(e) => e.stopPropagation()}
-        >
+      <motion.div
+  initial={{ scale: 0.9 }}
+  animate={{ scale: 1 }}
+  exit={{ scale: 0.9 }}
+  transition={{ type: "spring", stiffness: 120 }}
+  drag="x"
+  dragConstraints={{ left: 0, right: 0 }}
+  onDragEnd={(e, info) => {
+    if (info.offset.x < -50) onNext();
+    if (info.offset.x > 50) onPrev();
+  }}
+  className="relative max-w-[90vw] max-h-[90vh]"
+  onClick={(e) => e.stopPropagation()}
+>
+
           <div className="relative">
             <img
               src={media.source_url}
@@ -53,13 +60,13 @@ export default function ImageModal({ media, onClose, onNext, onPrev }) {
           {/* Navigation and close buttons */}
           <button
             onClick={onPrev}
-            className="absolute -left-16 top-1/2 -translate-y-1/2 text-white"
+            className="absolute left-0 md:-left-16 top-1/2 -translate-y-1/2 text-white"
           >
             <FaChevronLeft size={42} />
           </button>
           <button
             onClick={onNext}
-            className="absolute -right-16 top-1/2 -translate-y-1/2 text-white"
+            className="absolute right-0 md:-right-16 top-1/2 -translate-y-1/2 text-white"
           >
             <FaChevronRight size={32} />
           </button>
